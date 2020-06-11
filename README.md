@@ -119,7 +119,7 @@ This strategy reads the first line of a given file to extract the version to use
 
 ### Parameters
 
-- `versionFilePath`: denotes the file which first line will be read to extract the version from. Can be a fully qualified path or a path relative to the project directory. The parameter is optional, it defaults to `VERSION`, meaning that if not provided, a file called `VERSION` will be read from the project root. 
+- `versionFilePath`: denotes the file which first line will be read to extract the version from. Can be a fully qualified path or a path relative to the project directory. The parameter is optional, it defaults to `VERSION`, meaning that if not provided, a file called `VERSION` will be read from the project module root. 
 
 ## Strategy : script
 
@@ -169,6 +169,58 @@ This strategy uses 2 system properties to define the new project version:
     </plugin>
 
 ```
+## Strategy : rootfile
+
+This strategy reads the first line of a given file to extract the version to use. Needs only one file with version. 
+
+### Usage
+
+```xml
+
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-external-version-plugin</artifactId>
+        <version>X.Y.Z</version>
+        <extensions>true</extensions>
+        <configuration>
+            <strategy hint="rootfile">
+                <versionFilePath>SOME_FILE</versionFilePath>
+            </strategy>
+        </configuration>
+    </plugin>
+
+```
+
+### Parameters
+
+- `versionFilePath`: denotes the file which first line will be read to extract the version from. Can be a fully qualified path or a path relative to the project directory. The parameter is optional, it defaults to `VERSION`, meaning that if not provided, a file called `VERSION` will be read from the project root. 
+
+## Strategy : projprop
+
+This strategy uses 2 properties to define the new project version:
+
+### Usage
+
+``` xml
+
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-external-version-plugin</artifactId>
+        <version>X.Y.Z</version>
+        <extensions>true</extensions>
+        <configuration>
+            <strategy hint="projprop">
+                <externalVersion>new_version</externalVersion>
+                <externalVersionQualifier>version_qualifier</externalVersionQualifier>
+            </strategy>
+        </configuration>
+    </plugin>
+
+```
+
+### Parameters
+- `externalVersion`: the main version to use. If omitted, then it defaults to the current `project.version`.
+- `externalVersionQualifier`: an optional qualifier that will be appended to the given version
 
 TODO:
 -----
