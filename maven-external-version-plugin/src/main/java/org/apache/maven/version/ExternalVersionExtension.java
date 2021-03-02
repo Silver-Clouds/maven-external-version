@@ -215,6 +215,8 @@ public class ExternalVersionExtension
                 if ( newVersionForParent != null )
                 {
                     model.getParent().setVersion( newVersionForParent );
+                    String newRelativePath = model.getParent().getRelativePath() + ".new-version";
+                    model.getParent().setRelativePath( newRelativePath );
                 }
             }
             
